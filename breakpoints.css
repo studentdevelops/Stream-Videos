@@ -1,0 +1,13 @@
+/** Breakpoints:
+  sm: min-width: 640px;
+  md: min-width: 768px;
+  lg: min-width: 1024px;
+  xl: min-width: 1280px;
+  2xl: min-width: 1536px;
+**/
+@media only screen and (min-device-width: 640px) {
+  .navItem {
+    margin: 1rem 2rem;
+    cursor: pointer;
+  }
+}
