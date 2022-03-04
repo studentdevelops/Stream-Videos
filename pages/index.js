@@ -2,10 +2,51 @@ import Head from "next/head";
 import Image from "next/image";
 import Banner from "../Components/Banner/Banner";
 import Card from "../Components/Card/Card";
+import SectionCard from "../Components/Card/SectionCard";
 import Nav from "../Components/Nav/Nav";
 import styles from "../styles/Home.module.css";
 
+
 export default function Home() {
+  console.log({Data})
+  const video = [
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+    {
+      imgUrl: "/static/banner.jpg",
+    },
+  ];
   return (
     <div>
       <Head>
@@ -21,18 +62,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Nav username={"sourav"} />
-        <Banner
-          title={"Smurfs"}
-          subTitle={"Smurfing in Radiant"}
-          img={"/static/banner.jpg"}
-        />
-        {/* <h2>BingingWithMovie</h2> */}
-        <Card imgUrl={"/static/banner.jpg"} size="small" />
-        <Card imgUrl={"/static/banner.jpg"} size="medium" />
-        <Card imgUrl={"/static/banner.jpg"} size="large" />
-      </main>
+      <Nav username={"sourav"} />
+      <Banner
+        title={"Smurfs"}
+        subTitle={"Smurfing in Radiant"}
+        img={"/static/banner.jpg"}
+      />
+      {/* <h2>BingingWithMovie</h2> */}
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Disney"} videos={video} size={"large"}/>
+      </div>
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Anime"} videos={video} size={"medium"}/>
+      </div>
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Action"} videos={video} size={"small"}/>
+      </div>
     </div>
   );
 }

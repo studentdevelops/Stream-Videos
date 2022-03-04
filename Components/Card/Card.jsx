@@ -3,7 +3,7 @@ import styles from "./Card.module.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ imgUrl, size = "medium" }) => {
+const Card = ({ imgUrl, size = "medium", id }) => {
   const classMap = {
     large: styles.lgItem,
     medium: styles.mdItem,
@@ -15,18 +15,17 @@ const Card = ({ imgUrl, size = "medium" }) => {
   const onErrorHandle = (e) => {
     console.log("error");
     SetDefaultImg("/static/defaultImage.jpg");
-    // set default Image
   };
-  // useEffect(() => {}, [defaultImg]);
+  const scale =
+    id === 0
+      ? { scaleY: 1.1}
+      : { scale: 1.1};
+
   return (
     <div className={styles.container}>
-      <h3>Card</h3>
-      <div className={(styles.imgMotionWrapper)}>
+      <div className={styles.imgMotionWrapper}>
         <motion.div
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.2 },
-          }}
+          whileHover={scale}
           whileTap={{ scale: 0.9 }}
           className={classMap[size]}
         >
