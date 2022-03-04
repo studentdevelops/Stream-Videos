@@ -1,52 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
 import Banner from "../Components/Banner/Banner";
-import Card from "../Components/Card/Card";
 import SectionCard from "../Components/Card/SectionCard";
 import Nav from "../Components/Nav/Nav";
+import { getVideos } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
 
 export default function Home() {
-  console.log({Data})
-  const video = [
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-    {
-      imgUrl: "/static/banner.jpg",
-    },
-  ];
+  const videos = getVideos();
   return (
     <div>
       <Head>
@@ -70,13 +31,13 @@ export default function Home() {
       />
       {/* <h2>BingingWithMovie</h2> */}
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Disney"} videos={video} size={"large"}/>
+        <SectionCard title={"Disney"} videos={videos} size={"large"}/>
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Anime"} videos={video} size={"medium"}/>
+        <SectionCard title={"Anime"} videos={videos} size={"medium"}/>
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Action"} videos={video} size={"small"}/>
+        <SectionCard title={"Action"} videos={videos} size={"small"}/>
       </div>
     </div>
   );
