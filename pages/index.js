@@ -2,12 +2,20 @@ import Head from "next/head";
 import Banner from "../Components/Banner/Banner";
 import SectionCard from "../Components/Card/SectionCard";
 import Nav from "../Components/Nav/Nav";
-import { getVideos } from "../lib/videos";
+import { getVideos, getPopular } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
+export async function getServerSideProps() {
+  const DisneyVideos = await getVideos("Disney Trailer");
+  const Travel = await getVideos("Travel");
+  const AnimeTrailer = await getVideos("Anime Trailer");
+  const Popular = await getPopular();
+  return {
+    props: { DisneyVideos, Travel, AnimeTrailer, Popular },
+  };
+}
 
-export default function Home() {
-  const videos = getVideos();
+export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
   return (
     <div>
       <Head>
@@ -31,13 +39,16 @@ export default function Home() {
       />
       {/* <h2>BingingWithMovie</h2> */}
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Disney"} videos={videos} size={"large"}/>
+        <SectionCard title={"Disney"} videos={DisneyVideos} size={"large"} />
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Anime"} videos={videos} size={"medium"}/>
+        <SectionCard title={"Anime"} videos={AnimeTrailer} size={"medium"} />
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Action"} videos={videos} size={"small"}/>
+        <SectionCard title={"Travel"} videos={Travel} size={"medium"} />
+      </div>
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Popular"} videos={Popular} size={"small"} />
       </div>
     </div>
   );
