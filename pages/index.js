@@ -37,7 +37,7 @@ export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
         subTitle={"Smurfing in Radiant"}
         img={"/static/banner.jpg"}
       />
-      {/* <h2>BingingWithMovie</h2> */}
+
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Disney"} videos={DisneyVideos} size={"large"} />
       </div>

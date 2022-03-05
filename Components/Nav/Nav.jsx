@@ -6,7 +6,7 @@ const Nav = ({ username }) => {
   return (
     <ul className={styles.navbar}>
       <li className={styles.navItem}>
-        <Image src={"/logo.svg"} width={"30"} height={"15"} />
+        <Image src={"/logo.svg"} width={"40"} height={"40"} />
       </li>
       <li className={styles.navItem}>Home</li>
       <li className={styles.navItem}>List Shows</li>
