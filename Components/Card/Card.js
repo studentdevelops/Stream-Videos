@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link"
 import styles from "./Card.module.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -18,27 +19,31 @@ const Card = ({ imgUrl, size = "medium", id }) => {
   };
   const scale =
     id === 0
-      ? { scaleY: 1.1}
-      : { scale: 1.1};
-
+      ? { scaleY: 1.1 }
+      : { scale: 1.1 };
+  console.log()
   return (
-    <div className={styles.container}>
-      <div className={styles.imgMotionWrapper}>
-        <motion.div
-          whileHover={scale}
-          whileTap={{ scale: 0.9 }}
-          className={classMap[size]}
-        >
-          <Image
-            className={styles.cardImg}
-            src={defaultImg}
-            alt={"Card Image"}
-            onError={onErrorHandle}
-            layout={"fill"}
-          />
-        </motion.div>
-      </div>
-    </div>
+    <Link href={`/video/${id}`}>
+      <a>
+        <div className={styles.container}>
+          <div className={styles.imgMotionWrapper}>
+            <motion.div
+              whileHover={scale}
+              whileTap={{ scale: 0.9 }}
+              className={classMap[size]}
+            >
+              <Image
+                className={styles.cardImg}
+                src={defaultImg}
+                alt={"Card Image"}
+                onError={onErrorHandle}
+                layout={"fill"}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </a>
+    </Link>
   );
 };
 

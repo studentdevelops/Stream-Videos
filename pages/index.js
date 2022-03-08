@@ -8,14 +8,14 @@ import { useEffect } from "react";
 
 export async function getServerSideProps() {
 
-  // const DisneyVideos = await getVideos("Disney Trailer");
-  // const Travel = await getVideos("Travel");
-  // const AnimeTrailer = await getVideos("Anime Trailer");
-  // const Popular = await getPopular();
-  const DisneyVideos = [];
-  const Travel = [];
-  const AnimeTrailer = [];
-  const Popular = [];
+  const DisneyVideos = await getVideos("Disney Trailer");
+  const Travel = await getVideos("Travel");
+  const AnimeTrailer = await getVideos("Anime Trailer");
+  const Popular = await getPopular();
+  // const DisneyVideos = [];
+  // const Travel = [];
+  // const AnimeTrailer = [];
+  // const Popular = [];
   return {
     props: { DisneyVideos, Travel, AnimeTrailer, Popular },
   };
@@ -45,6 +45,7 @@ export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
         title={"Smurfs"}
         subTitle={"Smurfing in Radiant"}
         img={"/static/banner.jpg"}
+        videoId={"yhBpgqXwrt8"}
       />
 
       <div className={styles.sectionWrapper}>

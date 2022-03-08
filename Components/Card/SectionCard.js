@@ -2,9 +2,9 @@ import styles from "./SectionCard.module.css";
 import Card from "./Card";
 
 const SectionCard = ({ title = "Disney", videos = [], size }) => {
-  const Cards = videos.map((data, i) => {
+  const Cards = videos.map((data) => {
     return (
-      <Card title={title} imgUrl={data.imgUrl} size={size} id={i} key={i} />
+      <Card title={title} imgUrl={data.imgUrl} size={size} id={data.id} key={data.id} />
     );
   });
   return (
