@@ -2,10 +2,12 @@ import Head from "next/head";
 import Banner from "../Components/Banner/Banner";
 import SectionCard from "../Components/Card/SectionCard";
 import Nav from "../Components/Nav/Nav";
+import { magic } from "../lib/magic";
 import { getVideos, getPopular } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps() {
+
   const DisneyVideos = await getVideos("Disney Trailer");
   const Travel = await getVideos("Travel");
   const AnimeTrailer = await getVideos("Anime Trailer");
@@ -16,6 +18,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
+  console.log(magic);
   return (
     <div>
       <Head>
@@ -31,7 +34,7 @@ export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Nav username={"sourav"} />
+      <Nav username={"souravk1234@gmail.com"} />
       <Banner
         title={"Smurfs"}
         subTitle={"Smurfing in Radiant"}
