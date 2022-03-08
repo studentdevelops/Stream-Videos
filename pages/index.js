@@ -2,23 +2,25 @@ import Head from "next/head";
 import Banner from "../Components/Banner/Banner";
 import SectionCard from "../Components/Card/SectionCard";
 import Nav from "../Components/Nav/Nav";
-import { magic } from "../lib/magic";
 import { getVideos, getPopular } from "../lib/videos";
 import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps() {
 
-  const DisneyVideos = await getVideos("Disney Trailer");
-  const Travel = await getVideos("Travel");
-  const AnimeTrailer = await getVideos("Anime Trailer");
-  const Popular = await getPopular();
+  // const DisneyVideos = await getVideos("Disney Trailer");
+  // const Travel = await getVideos("Travel");
+  // const AnimeTrailer = await getVideos("Anime Trailer");
+  // const Popular = await getPopular();
+  const DisneyVideos = [];
+  const Travel = [];
+  const AnimeTrailer = [];
+  const Popular = [];
   return {
     props: { DisneyVideos, Travel, AnimeTrailer, Popular },
   };
 }
 
 export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
-  console.log(magic);
   return (
     <div>
       <Head>

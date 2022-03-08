@@ -2,33 +2,58 @@ import styles from '../styles/Login.module.css';
 import Image from "next/image";
 import { useRouter } from 'next/router'
 import { useState } from 'react';
+import { magic } from '../lib/magic-client';
+import { useEffect } from 'react';
 
 const login = () => {
   const router = useRouter();
   const [email, SetEmail] = useState("");
   const [userMsg, SetUserMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const properEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  const handleSignInSubmit = (e) => {
+  useEffect(() => {
+    const handleComplete = () => {
+      setIsLoading(false);
+    }
+    router.events.on("routeChangeStart",handleComplete);
+    router.events.on("routeChangeError",handleComplete);
 
+    return () => {
+      router.events.off("routeChangeComplete", handleComplete)
+      router.events.off("routeChangeError", handleComplete)
+    }
+
+  }, [router])
+
+
+  
+
+  const handleSignInSubmit = async (e) => {
     e.preventDefault();
     if (email) {
-      // setIsLoading(true);
-      // console.log(isLoading);
-      if (email = "sok1921@gmail.com") {
+      setIsLoading(true);
+      if (email.match(properEmail)) {
         SetUserMsg("");
-        router.push('/')
+        try {
+          const token = await magic.auth.loginWithMagicLink({ email });
+          if (token) {
+            router.push('/')
+          }
+
+          console.log(token)
+        } catch (err) {
+          console.error("error logging in")
+        }
       } else {
         SetUserMsg("Something Went Wrong Logging in");
       }
     } else {
       SetUserMsg("Enter A valid Email Address");
     }
-    // setIsLoading(false);
   }
   const handleOnChangeEmail = (e) => {
     const mail = e.target.value;
-    const properEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (mail.match(properEmail)) {
       SetUserMsg("");
       SetEmail(e.target.value);
