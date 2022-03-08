@@ -6,30 +6,40 @@ import { magic } from '../lib/magic-client';
 import { useEffect } from 'react';
 
 const login = () => {
+
+
   const router = useRouter();
   const [email, SetEmail] = useState("");
   const [userMsg, SetUserMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const properEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+
+  useEffect(async ()=>{
+    console.log(await magic.user.isLoggedIn())
+  },[])
+
+
   useEffect(() => {
     const handleComplete = () => {
       setIsLoading(false);
     }
-    router.events.on("routeChangeStart",handleComplete);
-    router.events.on("routeChangeError",handleComplete);
+    router.events.on("routeChangeStart", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
 
     return () => {
       router.events.off("routeChangeComplete", handleComplete)
       router.events.off("routeChangeError", handleComplete)
     }
 
+
   }, [router])
 
 
-  
+
 
   const handleSignInSubmit = async (e) => {
+
     e.preventDefault();
     if (email) {
       setIsLoading(true);
@@ -37,11 +47,10 @@ const login = () => {
         SetUserMsg("");
         try {
           const token = await magic.auth.loginWithMagicLink({ email });
+
           if (token) {
             router.push('/')
           }
-
-          console.log(token)
         } catch (err) {
           console.error("error logging in")
         }

@@ -23,21 +23,27 @@ const Nav = () => {
 
   const handleSignout = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${didToken}`,
-          "Content-Type": "application/json",
-        },
-      });
-
-      const res = await response.json();
-    } catch (error) {
-      console.error("Error logging out", error);
+      await magic.user.logout();
       router.push("/login");
+    } catch (error) {
+      console.log("error Logging out")
+      console.log(error)
     }
+    // try {
+    //   const response = await fetch("/api/logout", {
+    //     method: "POST",
+    //     headers: {
+    //       Authorization: `Bearer ${didToken}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+
+    //   const res = await response.json();
+    // } catch (error) {
+    //   console.error("Error logging out", error);
+    //   router.push("/login");
+    // }
   };
 
   const handleShowDropdown = (e) => {
@@ -56,7 +62,7 @@ const Nav = () => {
         console.error("")
       }
     }
-    fetchingMeta()
+    fetchingMeta();
   }, [])
 
 

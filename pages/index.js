@@ -4,6 +4,7 @@ import SectionCard from "../Components/Card/SectionCard";
 import Nav from "../Components/Nav/Nav";
 import { getVideos, getPopular } from "../lib/videos";
 import styles from "../styles/Home.module.css";
+import { useEffect } from "react";
 
 export async function getServerSideProps() {
 
@@ -21,6 +22,9 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
+
+
+
   return (
     <div>
       <Head>
