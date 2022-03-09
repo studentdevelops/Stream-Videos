@@ -10,7 +10,12 @@ const Banner = ({ title, subTitle, img, videoId }) => {
   }
 
   return (
-    <div className={styles.banner} style={{ backgroundImage: `url(${img})` }}>
+    // <div className={styles.banner} style={{ backgroundImage: `url(${img})` }}>
+    <div className={styles.banner} style={{
+      backgroundImage:
+        `linear-gradient(to right, rgb(0, 0, 0), rgba(255, 255, 255, 0.192)),
+    url(${img});`
+    }}>
       <div className={styles.leftCol}>
         <h3 className={styles.title}>{title}</h3>
         <h3 className={styles.subTitle}>{subTitle}</h3>

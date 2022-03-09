@@ -12,10 +12,7 @@ export async function getServerSideProps() {
   const Travel = await getVideos("Travel");
   const AnimeTrailer = await getVideos("Anime Trailer");
   const Popular = await getPopular();
-  // const DisneyVideos = [];
-  // const Travel = [];
-  // const AnimeTrailer = [];
-  // const Popular = [];
+  
   return {
     props: { DisneyVideos, Travel, AnimeTrailer, Popular },
   };
@@ -42,10 +39,10 @@ export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
 
       <Nav username={"souravk1234@gmail.com"} />
       <Banner
-        title={"Smurfs"}
-        subTitle={"Smurfing in Radiant"}
-        img={"/static/banner.jpg"}
-        videoId={"yhBpgqXwrt8"}
+        title={"Uncharted"}
+        subTitle={"Treasure hunter Victor 'Sully' Sullivan recruits street-smart Nathan Drake to help him recover a 500-year-old lost fortune amassed by explorer Ferdinand Magellan."}
+        img={"/static/uncharted.jpg"}
+        videoId={"eHp3MbsCbMg"}
       />
 
       <div className={styles.sectionWrapper}>

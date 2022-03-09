@@ -33,7 +33,7 @@
   background: linear-gradient(to top, var(--black10), transparent 50%);
 }
 
-/** Makes video edges curvy **/
+/** Makes video edges curved **/
 .videoPlayer {
   border-radius: 10px 10px 0px 0px;
   composes: borderBoxShadow;

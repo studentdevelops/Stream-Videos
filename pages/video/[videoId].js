@@ -2,21 +2,34 @@ import { useRouter } from 'next/router'
 import styles from '../../styles/Video.module.css';
 import Modal from 'react-modal';
 import classNames from 'classnames';
+import { getVideoById } from '../../lib/videos';
 
-const videoId = () => {
+export async function getStaticProps({ params }) {
+  const video = await getVideoById(params.videoId);
+  return {
+    props: {
+      video,
+    },
+    revalidate: 90,
+  }
+}
+
+
+export async function getStaticPaths() {
+  const videosList = ["-FZ-pPFAjYY", "ahZFCF--uRY", "-FmWuCgJmxo", "fb5ELWi-ekk", "aWzlQ2N6qqg", "eHp3MbsCbMg"]
+
+  const paths = videosList.map((videoId) => ({
+    params: { videoId },
+  }))
+  return { paths, fallback: 'blocking' }
+}
+
+
+const videoId = ({ video }) => {
   Modal.setAppElement('#__next');
   const router = useRouter()
   const { videoId } = router.query
-
-  const video = {
-    title: "Doggo",
-    publishTime: '123:321',
-    description: "tutututut tarara",
-    channelTitle: "Netflix",
-    viewCount: 100
-  }
-
-  const { title, publishTime, description, channelTitle, viewCount } = video;
+  const { title, publishTime, description, channelTitle, statistics:{viewCount} } = video[0];
   return (
     <div className={styles.container}>
       <Modal
@@ -30,14 +43,14 @@ const videoId = () => {
           <iframe id="ytplayer" type="text/html" width="100%" height="360"
             className={styles.videoPlayer}
             src={`https://www.youtube.com/embed/${videoId}?autoplay=0&origin=http://example.com&controls=0&rel=0`}
-            frameborder="0"></iframe>
+            frameBorder="0"></iframe>
         </div>
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
             <div className={styles.col1}>
-              <p className={styles.publishTime}></p>
-              <p className={styles.title}></p>
-              <p className={styles.description}></p>
+              <p className={styles.publishTime}>{publishTime}</p>
+              <p className={styles.title}>{title}</p>
+              <p className={styles.description}>{description}</p>
             </div>
             <div className={styles.col2}>
               <p className={classNames(styles.subText, styles.subTextWrapper)}>
