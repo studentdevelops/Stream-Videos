@@ -69,7 +69,7 @@ const Nav = () => {
   return (
     <ul className={styles.navbar}>
       <li className={styles.navItem}>
-        <Image src={"/logo.svg"} width={"40"} height={"40"} />
+        <Image src={"/logo.svg"} width={"40"} height={"40"} alt={"Website Logo"}/>
       </li>
       <li className={styles.navItem}><Link href={"/"}><a>Home</a></Link></li>
       <li className={styles.navItem}> <button className={styles.usernameBtn} onClick={handleOnClickMyList}> List Shows </button></li>

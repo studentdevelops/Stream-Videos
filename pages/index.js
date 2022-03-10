@@ -41,7 +41,7 @@ export default function Home({ DisneyVideos, Travel, AnimeTrailer, Popular }) {
       <Banner
         title={"Uncharted"}
         subTitle={"Treasure hunter Victor 'Sully' Sullivan recruits street-smart Nathan Drake to help him recover a 500-year-old lost fortune amassed by explorer Ferdinand Magellan."}
-        img={"/static/uncharted.jpg"}
+        img={"/static/uncharted.webp"}
         videoId={"eHp3MbsCbMg"}
       />
 

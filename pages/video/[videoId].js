@@ -3,14 +3,15 @@ import styles from '../../styles/Video.module.css';
 import Modal from 'react-modal';
 import classNames from 'classnames';
 import { getVideoById } from '../../lib/videos';
+import Nav from '../../Components/Nav/Nav';
 
 export async function getStaticProps({ params }) {
-  const video = await getVideoById(params.videoId);
+  const videoArray = await getVideoById(params.videoId);
   return {
     props: {
-      video,
+      video: videoArray.length > 0 ? videoArray[0] : {},
     },
-    revalidate: 90,
+    revalidate: 90, // seconds
   }
 }
 
@@ -29,9 +30,10 @@ const videoId = ({ video }) => {
   Modal.setAppElement('#__next');
   const router = useRouter()
   const { videoId } = router.query
-  const { title, publishTime, description, channelTitle, statistics:{viewCount} } = video[0];
+  const { title, publishTime, description, channelTitle, statistics:{viewCount} } = video;
   return (
     <div className={styles.container}>
+      <Nav />
       <Modal
         isOpen={true}
         contentLabel="Watch Video"
