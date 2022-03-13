@@ -15,9 +15,9 @@ const login = () => {
   const properEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 
-  useEffect(async ()=>{
+  useEffect(async () => {
     console.log(await magic.user.isLoggedIn())
-  },[])
+  }, [])
 
 
   useEffect(() => {
@@ -44,13 +44,13 @@ const login = () => {
     if (email) {
       setIsLoading(true);
       if (email.match(properEmail)) {
-        SetUserMsg("");
         try {
           const token = await magic.auth.loginWithMagicLink({ email });
 
           if (token) {
             router.push('/')
           }
+          
         } catch (err) {
           console.error("error logging in")
         }

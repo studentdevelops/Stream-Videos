@@ -67,6 +67,11 @@
   padding-bottom: 0.5rem /* 8px */;
 }
 
+.navButtons {
+  color: white;
+  font-weight: 600;
+}
+
 /** Breakpoints:
   sm: min-width: 640px;
   md: min-width: 768px;

@@ -69,10 +69,10 @@ const Nav = () => {
   return (
     <ul className={styles.navbar}>
       <li className={styles.navItem}>
-        <Image src={"/logo.svg"} width={"40"} height={"40"} alt={"Website Logo"}/>
+        <Image src={"/logo.svg"} width={"40"} height={"40"} alt={"Website Logo"} />
       </li>
       <li className={styles.navItem}><Link href={"/"}><a>Home</a></Link></li>
-      <li className={styles.navItem}> <button className={styles.usernameBtn} onClick={handleOnClickMyList}> List Shows </button></li>
+      <li className={styles.navItem}> <button className={styles.navButtons} onClick={handleOnClickMyList}> History </button></li>
       <li className={classNames(styles.navItem, styles.push)}><button className={styles.usernameBtn} onClick={handleShowDropdown}>
         <p className={styles.username}>{email}</p>
         <Image
@@ -91,7 +91,7 @@ const Nav = () => {
           </div>
         </div>
       )}</li>
-      
+
     </ul>
   );
 };
