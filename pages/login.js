@@ -46,11 +46,20 @@ const login = () => {
       if (email.match(properEmail)) {
         try {
           const token = await magic.auth.loginWithMagicLink({ email });
-
+          const response = fetch('/api/login', {
+            method: 'POST', // or 'PUT'
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({token}),
+          })
+          // console.log(token)
+          // send this info over api or let it get fetched in the backend via token
+          // console.log(await magic.user.getMetadata(token))
           if (token) {
             router.push('/')
           }
-          
+
         } catch (err) {
           console.error("error logging in")
         }
