@@ -47,18 +47,15 @@ const login = () => {
       if (email.match(properEmail)) {
         try {
           const didToken = await magic.auth.loginWithMagicLink({ email });
-          const response = fetch('/api/login', {
+          const response = await fetch('/api/login', {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
               "Authorization": `Bearer ${didToken}`
             },
-            body: JSON.stringify({token}),
           })
-          // console.log(token)
-          // send this info over api or let it get fetched in the backend via token
-          // console.log(await magic.user.getMetadata(token))
-          if (token) {
+          const {msg} = await response.json()
+          if (msg) {
             router.push('/')
           }
 

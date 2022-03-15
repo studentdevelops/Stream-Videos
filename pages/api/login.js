@@ -1,7 +1,7 @@
 
 import { CreateNewUser, isNewUser } from "../../lib/db/hasura";
 import { magicAdmin } from "../../lib/magic";
-import { CreateJWT } from "../../lib/webTokens";
+import { CreateJWT, setTokenCookie } from "../../lib/webTokens";
 
 export default async function loginApi(req, res) {
     if (req.method === "POST") {
@@ -12,24 +12,12 @@ export default async function loginApi(req, res) {
             const jwt = CreateJWT(metaData);
 
             const response = await isNewUser(jwt, metaData.issuer)
-            console.log(response)
-            // res.status(200).json({response})
-            if (response === true) {
-                const newUser = await CreateNewUser(metaData, jwt);
-                const result = newUser.data.insert_users.returning.map((data) => data)
-                res.status(200).json({ user: "new", result })
-            } else {
-                res.status(200).json({ user: "old" })
-            }
-            // const response = fetch('/api/login', {
-            //     method: 'POST', // or 'PUT'
-            //     headers: {
-            //       'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({token}),
-            //   })
+            response && await CreateNewUser(metaData, jwt)
+            setTokenCookie(jwt, res);
+            res.json({ msg: true })
+
         } catch (error) {
-            res.status(500).json({ worked: false })
+            res.status(500).json({ msg: false })
         }
     } else {
         res.status(405).json({ method: "invalid" });
