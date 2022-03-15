@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react';
 import { magic } from '../lib/magic-client';
 import { useEffect } from 'react';
+import { CreateJWT } from '../lib/db/hasura';
 
 const login = () => {
 
@@ -45,12 +46,12 @@ const login = () => {
       setIsLoading(true);
       if (email.match(properEmail)) {
         try {
-          const token = await magic.auth.loginWithMagicLink({ email });
+          const didToken = await magic.auth.loginWithMagicLink({ email });
           const response = fetch('/api/login', {
             method: 'POST', // or 'PUT'
             headers: {
               'Content-Type': 'application/json',
-              "Authorization": `Bearer ${token}`
+              "Authorization": `Bearer ${didToken}`
             },
             body: JSON.stringify({token}),
           })
