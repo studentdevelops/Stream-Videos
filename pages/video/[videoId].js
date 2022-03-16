@@ -29,23 +29,27 @@ export async function getStaticPaths() {
 }
 
 
-const videoId = ({ video }) => {
+const VideoId = ({ video }) => {
   Modal.setAppElement('#__next');
-  const router = useRouter()
-  const { videoId } = router.query
+  const router = useRouter();
+  const { videoId } = router.query;
+
   const { title, publishTime, description, channelTitle, statistics: { viewCount } } = video;
+
   const [toggleLike, SetToggleLike] = useState(false);
   const [toggleDisLike, SetToggleDisLike] = useState(false);
-
 
   const HandleToggleLike = (e) => {
     SetToggleLike(!toggleLike)
     SetToggleDisLike(false);
   }
+  
   const HandleToggleDislike = (e) => {
     SetToggleDisLike(!toggleDisLike)
     SetToggleLike(false);
   }
+
+
   return (
     <div className={styles.container}>
       <Nav />
@@ -102,4 +106,4 @@ const videoId = ({ video }) => {
   )
 }
 
-export default videoId
+export default VideoId

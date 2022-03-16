@@ -4,9 +4,8 @@ import { useRouter } from 'next/router'
 import { useState } from 'react';
 import { magic } from '../lib/magic-client';
 import { useEffect } from 'react';
-import { CreateJWT } from '../lib/db/hasura';
 
-const login = () => {
+const Login = () => {
 
 
   const router = useRouter();
@@ -81,7 +80,7 @@ const login = () => {
       <header>
         <ul className={styles.navbar}>
           <li className={styles.navItem}>
-            <Image src={"/logo.svg"} width={"40"} height={"40"} />
+            <Image src={"/logo.svg"} width={"40"} height={"40"} alt="website Logo"/>
           </li>
         </ul>
       </header>
@@ -107,4 +106,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login
