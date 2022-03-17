@@ -30,20 +30,6 @@ const Nav = () => {
       console.log("error Logging out")
       console.log(error)
     }
-    // try {
-    //   const response = await fetch("/api/logout", {
-    //     method: "POST",
-    //     headers: {
-    //       Authorization: `Bearer ${didToken}`,
-    //       "Content-Type": "application/json",
-    //     },
-    //   });
-
-    //   const res = await response.json();
-    // } catch (error) {
-    //   console.error("Error logging out", error);
-    //   router.push("/login");
-    // }
   };
 
   const handleShowDropdown = (e) => {

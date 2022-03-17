@@ -6,7 +6,7 @@ import { getYoutubeVideoById } from '../../lib/videos';
 import Nav from '../../Components/Nav/Nav';
 import LikeButton from '../../Components/Icons/LikeButton';
 import DisLikeButton from '../../Components/Icons/DisLikeButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export async function getStaticProps({ params }) {
   const videoArray = await getYoutubeVideoById(params.videoId);
@@ -39,14 +39,59 @@ const VideoId = ({ video }) => {
   const [toggleLike, SetToggleLike] = useState(false);
   const [toggleDisLike, SetToggleDisLike] = useState(false);
 
+  const updateDb = async (favorite = null) => {
+    const response = await fetch('/api/stats', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        VideoId: `${videoId}`,
+        Favorite: favorite,
+        watched: true
+      })
+    })
+    return await response.json()
+  }
+
+
+  useEffect(() => {
+    const PageLoadUp = async () => {
+      const response = await fetch(`/api/stats?VideoId=${videoId}`)
+      const result = await response.json()
+      if (result.length > 0) {
+        const { Favorited } = result[0];
+        if (Favorited) {
+          SetToggleLike(!toggleLike);
+        } else if (Favorited === false) {
+          SetToggleDisLike(!toggleDisLike);
+        }
+      } else {
+        const creating = await fetch('/api/stats', {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ VideoId: videoId })
+        })
+      }
+    }
+    PageLoadUp();
+  })
+
   const HandleToggleLike = (e) => {
+    const favorite = !toggleLike ? 1 : null
     SetToggleLike(!toggleLike)
     SetToggleDisLike(false);
+    updateDb(favorite)
   }
-  
+
   const HandleToggleDislike = (e) => {
+    const favorite = !toggleDisLike ? 0 : null
     SetToggleDisLike(!toggleDisLike)
     SetToggleLike(false);
+    updateDb(favorite)
+
   }
 
 

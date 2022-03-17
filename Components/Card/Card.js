@@ -21,7 +21,6 @@ const Card = ({ imgUrl, size = "medium", id }) => {
     id === 0
       ? { scaleY: 1.1 }
       : { scale: 1.1 };
-  console.log()
   return (
     <Link href={`/video/${id}`}>
       <a>
