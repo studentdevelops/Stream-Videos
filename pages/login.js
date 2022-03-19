@@ -56,12 +56,15 @@ const Login = () => {
           }
 
         } catch (err) {
+          setIsLoading(false);
           console.error("error logging in")
         }
       } else {
+        setIsLoading(false);
         SetUserMsg("Something Went Wrong Logging in");
       }
     } else {
+      setIsLoading(false);
       SetUserMsg("Enter A valid Email Address");
     }
   }
@@ -80,7 +83,7 @@ const Login = () => {
       <header>
         <ul className={styles.navbar}>
           <li className={styles.navItem}>
-            <Image src={"/logo.svg"} width={"40"} height={"40"} alt="website Logo"/>
+            <Image src={"/logo.svg"} width={"40"} height={"40"} alt="website Logo" />
           </li>
         </ul>
       </header>
