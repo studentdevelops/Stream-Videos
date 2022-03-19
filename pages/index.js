@@ -13,12 +13,13 @@ export async function getServerSideProps({ req }) {
   const AnimeTrailer = await getVideos("Anime Trailer");
   const Marvel = await getVideos("Marvel Trailer");
   const DC = await getVideos("DC Trailer");
+  const Music = await getVideos("Indie Music");
 
   const { token, userId } = await UseRedirectUser(req);
   const watchAgain = await getWatchItAgain(userId, token);
 
   return {
-    props: { DisneyVideos, Travel, AnimeTrailer, Marvel, DC, watchAgain },
+    props: { DisneyVideos, Travel, AnimeTrailer, Marvel, DC, watchAgain, Music },
   };
 }
 
@@ -29,6 +30,7 @@ export default function Home({
   Marvel,
   DC,
   watchAgain,
+  Music
 }) {
   // const VideoURL = ["-FZ-pPFAjYY", "ahZFCF--uRY", "-FmWuCgJmxo", "fb5ELWi-ekk", "aWzlQ2N6qqg", "eHp3MbsCbMg"]
   // const BannerList = [
@@ -49,6 +51,7 @@ export default function Home({
           name="description"
           content="Watch Flixified movies &amp; TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."
         />
+        <link rel="icon" href="/favicon.ico" />
         <meta
           content="Flixified, shows, animes, watch movies, movies online, watch TV, TV online, TV shows online, watch TV shows, stream movies, stream tv, instant streaming, watch online, movies, watch movies India, watch TV online, no download, full length movies"
           name="keywords"
@@ -67,7 +70,7 @@ export default function Home({
         videoId={"eHp3MbsCbMg"}
       />
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Anime"} videos={AnimeTrailer} size={"large"} shouldScale={false}/>
+        <SectionCard title={"Anime"} videos={AnimeTrailer} size={"large"} shouldScale={false} />
       </div>
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Marvel"} videos={Marvel} size={"large"} />
@@ -75,15 +78,17 @@ export default function Home({
       <div className={styles.sectionWrapper}>
         <SectionCard title={"DC"} videos={DC} size={"large"} />
       </div>
-
-      <div className={styles.sectionWrapper}>
-        <SectionCard title={"Watch Again"} videos={watchAgain} size={"small"} />
-      </div>
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Disney"} videos={DisneyVideos} size={"medium"} />
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Travel"} videos={Travel} size={"medium"} />
+        <SectionCard title={"Travel"} videos={Travel} size={"small"} />
+      </div>
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Watch Again"} videos={watchAgain} size={"small"} />
+      </div>
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Indie Music"} videos={Music} size={"small"} />
       </div>
     </div>
   );

@@ -62,10 +62,10 @@ const VideoId = ({ video }) => {
       const result = await response.json()
       if (result.length > 0) {
         const { Favorited } = result[0];
-        if (Favorited) {
+        if (Favorited === 1) {
           SetToggleLike(true);
           SetToggleDisLike(false);
-        } else if (Favorited === false) {
+        } else if (Favorited === 0) {
           SetToggleLike(false);
           SetToggleDisLike(true);
         }
@@ -104,7 +104,7 @@ const VideoId = ({ video }) => {
         <title>
           {title}
         </title>
-        {/* <link rel="icon" href="/hero-icon.ico" /> */}
+        <link rel="icon" href="/favicon.ico" />
         <meta name="description" key="ogdesc" content={description} />
         <meta property="og:image" content={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`} key="ogimage" />
       </Head>
