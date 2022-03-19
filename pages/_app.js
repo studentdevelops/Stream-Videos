@@ -1,25 +1,25 @@
 import '../styles/globals.css'
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
-import { magic } from "../lib/magic-client";
 import Loading from '../Components/Loading/Loading';
+import { magic } from '../lib/magic-client';
+
 
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, SetIsLoading] = useState(false);
   const router = useRouter();
 
-  // useEffect(async () => {
+  // useEffect(() => {
   //   const routing = async () => {
   //     if (!await magic.user.isLoggedIn()) {
-  //       // console.log(await magic.user.getIdToken())
   //       router.push('/login');
   //     } else {
   //       router.push("/")
   //     }
   //   }
   //   routing();
-  // }, []);
+  // });
 
   useEffect(() => {
     const handleComplete = () => {
@@ -31,8 +31,6 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleComplete)
       router.events.off("routeChangeError", handleComplete)
     }
-
-
   }, [router])
 
 
