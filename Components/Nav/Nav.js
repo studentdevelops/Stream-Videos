@@ -18,7 +18,7 @@ const Nav = () => {
 
   const handleOnClickMyList = (e) => {
     e.preventDefault();
-    router.push("/browse/my-list");
+    router.push("/browse/history");
   };
 
   const handleSignout = async (e) => {
@@ -27,8 +27,7 @@ const Nav = () => {
       await magic.user.logout();
       router.push("/login");
     } catch (error) {
-      console.log("error Logging out")
-      console.log(error)
+      console.log("Error Logging Out")
     }
   };
 

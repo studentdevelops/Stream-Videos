@@ -13,9 +13,9 @@ const stats = async (req, res) => {
         res.status(403).json({})
     } else {
         try {
-            const { issuer } = decodeToken(req.cookies.token)
-            const { VideoId, Favorite , watched = true } = req.method === "POST" ? req.body : req.query;
-            const videoStat = await findVideoIdByUserId(VideoId, issuer, token);
+            const { issuer } = await decodeToken(req.cookies.token)
+            const { VideoId, Favorite, watched = true } = req.method === "POST" ? req.body : req.query;
+            const videoStat = await findVideoIdByUserId({VideoId, UserId: issuer, token});
             if (req.method === "POST") {
                 if (VideoId) {
                     if (checkVideo(videoStat)) {
@@ -44,7 +44,7 @@ const stats = async (req, res) => {
 
             }
         } catch (error) {
-            console.log(error)
+            console.log({error })
             res.status(500).json({ msg: "Something Went Wrong" })
         }
 

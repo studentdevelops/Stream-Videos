@@ -7,6 +7,7 @@ import Nav from '../../Components/Nav/Nav';
 import LikeButton from '../../Components/Icons/LikeButton';
 import DisLikeButton from '../../Components/Icons/DisLikeButton';
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 export async function getStaticProps({ params }) {
   const videoArray = await getYoutubeVideoById(params.videoId);
@@ -62,9 +63,11 @@ const VideoId = ({ video }) => {
       if (result.length > 0) {
         const { Favorited } = result[0];
         if (Favorited) {
-          SetToggleLike(!toggleLike);
+          SetToggleLike(true);
+          SetToggleDisLike(false);
         } else if (Favorited === false) {
-          SetToggleDisLike(!toggleDisLike);
+          SetToggleLike(false);
+          SetToggleDisLike(true);
         }
       } else {
         const creating = await fetch('/api/stats', {
@@ -97,6 +100,14 @@ const VideoId = ({ video }) => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>
+          {title}
+        </title>
+        {/* <link rel="icon" href="/hero-icon.ico" /> */}
+        <meta name="description" key="ogdesc" content={description} />
+        <meta property="og:image" content={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`} key="ogimage" />
+      </Head>
       <Nav />
       <Modal
         isOpen={true}

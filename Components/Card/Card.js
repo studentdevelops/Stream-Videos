@@ -4,7 +4,7 @@ import styles from "./Card.module.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Card = ({ imgUrl, size = "medium", id }) => {
+const Card = ({ imgUrl, size = "medium", id, changeScale, shouldScale }) => {
   const classMap = {
     large: styles.lgItem,
     medium: styles.mdItem,
@@ -17,10 +17,13 @@ const Card = ({ imgUrl, size = "medium", id }) => {
     console.log("error");
     SetDefaultImg("/static/defaultImage.jpg");
   };
-  const scale =
-    id === 0
-      ? { scaleY: 1.1 }
-      : { scale: 1.1 };
+  const scale = shouldScale ? (changeScale
+    ? { scaleY: 1 }
+    : { scale: 1}) 
+    : ( changeScale
+      ? { scaleY: 1.15 }
+      : { scale: 1.1 })
+
   return (
     <Link href={`/video/${id}`}>
       <a>
