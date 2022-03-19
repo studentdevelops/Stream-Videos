@@ -8,6 +8,15 @@ import styles from '../../styles/History.module.css'
 export async function getServerSideProps({ req }) {
 
     const { token, userId } = await UseRedirectUser(req);
+    if (!userId) {
+        return {
+            props: {},
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        };
+    }
     const history = await getWatchItAgain(userId, token);
 
     return {

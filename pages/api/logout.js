@@ -11,9 +11,9 @@ export default async function logout(req, res) {
             const jwt = req.cookies.token;
             const token = await decodeToken(jwt)
             if (token.issuer) {
+                removeTokenCookie(res);
                 try {
                     await magicAdmin.users.logoutByIssuer(token.issuer)
-                    removeTokenCookie(res)
                 } catch (error) {
                     console.log({ error })
                 }

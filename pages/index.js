@@ -16,7 +16,16 @@ export async function getServerSideProps({ req }) {
   const Music = await getVideos("Indie Music");
 
   const { token, userId } = await UseRedirectUser(req);
-  const watchAgain = await getWatchItAgain(userId, token);
+  if (!userId) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const watchAgain = await getWatchItAgain(userId, token) || [];
 
   return {
     props: { DisneyVideos, Travel, AnimeTrailer, Marvel, DC, watchAgain, Music },
@@ -84,9 +93,14 @@ export default function Home({
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Travel"} videos={Travel} size={"small"} />
       </div>
-      <div className={styles.sectionWrapper}>
-        <SectionCard title={"Watch Again"} videos={watchAgain} size={"small"} />
-      </div>
+      {
+        watchAgain?.length > 0 &&
+        (
+          <div className={styles.sectionWrapper}>
+            <SectionCard title={"Watch Again"} videos={watchAgain} size={"small"} />
+          </div>
+        )
+      }
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Indie Music"} videos={Music} size={"small"} />
       </div>
