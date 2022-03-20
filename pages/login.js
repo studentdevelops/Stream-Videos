@@ -31,7 +31,6 @@ const Login = () => {
 
 
   const handleSignInSubmit = async (e) => {
-
     e.preventDefault();
     if (email) {
       setIsLoading(true);

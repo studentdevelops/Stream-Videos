@@ -14,6 +14,7 @@ export async function getServerSideProps({ req }) {
   const Marvel = await getVideos("Marvel Trailer");
   const DC = await getVideos("DC Trailer");
   const Music = await getVideos("Indie Music");
+  const Productivity = await getVideos("Productivity");
 
   const { token, userId } = await UseRedirectUser(req);
   if (!userId) {
@@ -28,7 +29,7 @@ export async function getServerSideProps({ req }) {
   const watchAgain = await getWatchItAgain(userId, token) || [];
 
   return {
-    props: { DisneyVideos, Travel, AnimeTrailer, Marvel, DC, watchAgain, Music },
+    props: { DisneyVideos, Travel, AnimeTrailer, Marvel, DC, watchAgain, Music, Productivity },
   };
 }
 
@@ -39,7 +40,8 @@ export default function Home({
   Marvel,
   DC,
   watchAgain,
-  Music
+  Music,
+  Productivity
 }) {
   // const VideoURL = ["-FZ-pPFAjYY", "ahZFCF--uRY", "-FmWuCgJmxo", "fb5ELWi-ekk", "aWzlQ2N6qqg", "eHp3MbsCbMg"]
   // const BannerList = [
@@ -82,10 +84,10 @@ export default function Home({
         <SectionCard title={"Anime"} videos={AnimeTrailer} size={"large"} shouldScale={false} />
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"Marvel"} videos={Marvel} size={"large"} />
+        <SectionCard title={"Marvel"} videos={Marvel} size={"medium"} />
       </div>
       <div className={styles.sectionWrapper}>
-        <SectionCard title={"DC"} videos={DC} size={"large"} />
+        <SectionCard title={"DC"} videos={DC} size={"medium"} />
       </div>
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Disney"} videos={DisneyVideos} size={"medium"} />
@@ -103,6 +105,9 @@ export default function Home({
       }
       <div className={styles.sectionWrapper}>
         <SectionCard title={"Indie Music"} videos={Music} size={"small"} />
+      </div>
+      <div className={styles.sectionWrapper}>
+        <SectionCard title={"Productivity"} videos={Productivity} size={"small"} />
       </div>
     </div>
   );
