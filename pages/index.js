@@ -77,7 +77,7 @@ export default function Home({
         subTitle={
           "Treasure hunter Victor 'Sully' Sullivan recruits street-smart Nathan Drake to help him recover a 500-year-old lost fortune amassed by explorer Ferdinand Magellan."
         }
-        img={"/static/uncharted.webp"}
+        img={"/Static/uncharted.webp"}
         videoId={"eHp3MbsCbMg"}
       />
       <div className={styles.sectionWrapper}>
