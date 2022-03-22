@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       }
     }
     routing();
-  });
+  },[]);
 
   useEffect(() => {
     const handleComplete = () => {
