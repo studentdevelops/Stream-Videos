@@ -57,14 +57,14 @@ export default function Home({
   return (
     <div>
       <Head>
-        <title>BingingWithMovie</title>
+        <title>Binging</title>
         <meta
           name="description"
-          content="Watch Flixified movies &amp; TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."
+          content="Watch Binging movies &amp; TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."
         />
         <link rel="icon" href="/favicon.ico" />
         <meta
-          content="Flixified, shows, animes, watch movies, movies online, watch TV, TV online, TV shows online, watch TV shows, stream movies, stream tv, instant streaming, watch online, movies, watch movies India, watch TV online, no download, full length movies"
+          content="Binging, shows, animes, watch movies, movies online, watch TV, TV online, TV shows online, watch TV shows, stream movies, stream tv, instant streaming, watch online, movies, watch movies India, watch TV online, no download, full length movies"
           name="keywords"
         />
         {/* <meta property="og:image" content={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`} key="ogimage" /> */}

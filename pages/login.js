@@ -1,4 +1,5 @@
 import styles from '../styles/Login.module.css';
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from 'next/router'
 import { useState } from 'react';
@@ -79,6 +80,20 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Binging | Login</title>
+        <meta
+          name="description"
+          content="Login into Binging, watch movies &amp; TV shows online or stream right to your smart TV, game console, PC, Mac, mobile, tablet and more."
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <meta
+          content="Binging, shows, animes, watch movies, movies online, watch TV, TV online, TV shows online, watch TV shows, stream movies, stream tv, instant streaming, watch online, movies, watch movies India, watch TV online, no download, full length movies"
+          name="keywords"
+        />
+        {/* <meta property="og:image" content={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`} key="ogimage" /> */}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <header>
         <ul className={styles.navbar}>
           <li className={styles.navItem}>

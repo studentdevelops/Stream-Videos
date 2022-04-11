@@ -15,7 +15,7 @@ export async function getStaticProps({ params }) {
     props: {
       video: videoArray.length > 0 ? videoArray[0] : {},
     },
-    revalidate: 600, // seconds
+    revalidate: 43200, // seconds
   }
 }
 
