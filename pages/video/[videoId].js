@@ -102,7 +102,7 @@ const VideoId = ({ video }) => {
     <div className={styles.container}>
       <Head>
         <title>
-          {title}
+          Binging | {title}
         </title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" key="ogdesc" content={description} />

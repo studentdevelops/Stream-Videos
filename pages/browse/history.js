@@ -29,7 +29,7 @@ const History = ({ history }) => {
     return (
         <div>
             <Head>
-                <title>History</title>
+                <title>Binging | History</title>
             </Head>
             <Nav />
             <main className={styles.main}>
