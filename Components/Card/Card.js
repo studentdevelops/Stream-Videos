@@ -14,7 +14,7 @@ const Card = ({ imgUrl, size = "medium", id, changeScale, shouldScale }) => {
   const [defaultImg, SetDefaultImg] = useState(imgUrl);
 
   const onErrorHandle = (e) => {
-    console.log("error");
+    console.error("error");
     SetDefaultImg("/Static/defaultImage.jpg");
   };
   const scale = shouldScale ? (changeScale
